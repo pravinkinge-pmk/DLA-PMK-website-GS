@@ -1,5 +1,5 @@
 var API_URL = 'https://script.google.com/macros/s/AKfycbx0UIJJMDKQwlUGa8g3rrCI6E6pLKZd-nUFhoHECbYaCNnpXoHMfbTEmi5u22SD4M8PEA/exec';
-var KEYS = ['srNo', 'rollNo', 'name', 'tenth', 'twelfth', 'sem1', 'sem2'];
+var KEYS = ['Sr. No', 'Roll No', 'Student Name', '10th', '12th', 'Sem 1', 'Sem 2'];
 var LABELS = ['Sr No', 'Roll No', 'Student Name', '10th', '12th', 'Sem 1', 'Sem 2'];
 var students = [];
 var sortKey = null;
@@ -27,8 +27,8 @@ console.error(err);
 function render() {
 var q = searchBox.value.trim().toLowerCase();
 var list = students.filter(function (s) {
-return String(s.rollNo).toLowerCase().indexOf(q) !== -1 ||
-String(s.name).toLowerCase().indexOf(q) !== -1;
+return String(s['Roll No'] || '').toLowerCase().indexOf(q) !== -1 ||
+String(s['Student Name'] || '').toLowerCase().indexOf(q) !== -1;
 });
 if (sortKey) {
 list.sort(function (a, b) {
@@ -40,8 +40,6 @@ var r = (!isNaN(nx) && !isNaN(ny))
 return sortAsc ? r : -r;
 });
 }
-Digital Literacy and Application | Unit 6 | Activity 6
-Page 5
 tbody.innerHTML = '';
 list.forEach(function (s) {
 var tr = document.createElement('tr');
